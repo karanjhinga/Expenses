@@ -117,7 +117,6 @@ public class ShowAllRecords extends AppCompatActivity implements myInterface{
                 Cursor cursor = databaseHelper.getRecords();
                 populatelist(cursor);
                 adapter.notifyDataSetChanged();
-                Toast.makeText(this, "Refreshed !", Toast.LENGTH_SHORT).show();
             }
                 break;
             case R.id.allinc:
@@ -126,14 +125,12 @@ public class ShowAllRecords extends AppCompatActivity implements myInterface{
                 Cursor cursor = databaseHelper.getIncomeRecords();
                 populatelist(cursor);
                 adapter.notifyDataSetChanged();
-                Toast.makeText(this, "Refreshed !", Toast.LENGTH_SHORT).show();
             }
                 break;
             case R.id.allexp:
             {       item.setChecked(true);
                 populatelist(databaseHelper.getExpenseRecords());
                 adapter.notifyDataSetChanged();
-                Toast.makeText(this, "Refreshed !", Toast.LENGTH_SHORT).show();
             }
                 break;
         }
