@@ -1,7 +1,24 @@
 <resources>
     <string name="app_name">Expenses</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-
+    <string name="select_category">Select Category…</string>
+    <string name="description">Description</string>
+    <string name="expense">Expense</string>
+    <string name="save">Save</string>
+    <string name="income">Income</string>
+    <string name="no_records_found">No Records Found !</string>
+    <string name="add_expense_category">Add expense category</string>
+    <string name="add_income_category">Add income category</string>
+    <string name="summary">Summary:</string>
+    <string name="zero">00.00</string>
+    <string name="all_records">All Records</string>
+    <string name="add_income">Add Income</string>
+    <string name="add_expense">Add Expense</string>
+    <string name="category">Category</string>
+    <string name="random_description_here">random description here</string>
+    <string name="input_category_name">Input category name</string>
+    <string name="expense_records">Expense Records</string>
+    <string name="income_records">Income Records</string>
+    <string name="about_the_application">About the Application</string>
+    <string name="expense_categories">Expense Categories</string>
+    <string name="income_categories">Income Categories</string>
 </resources>

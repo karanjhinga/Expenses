@@ -12,17 +12,18 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
-        android:text="No Records Found !"
-        android:textSize="30dp"
+        android:text="@string/no_records_found"
+        android:textSize="30sp"
         android:textStyle="bold"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab1"
+        android:contentDescription="@string/add_income_category"
         android:src="@drawable/ic_add_white"
-        android:layout_marginRight="20dp"
+        android:layout_marginEnd="20dp"
         android:layout_marginBottom="20dp"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 </RelativeLayout>

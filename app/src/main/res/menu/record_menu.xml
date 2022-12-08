@@ -4,10 +4,10 @@
     <group android:checkableBehavior="single">
     <item android:id="@+id/all"
         android:checked="true"
-        android:title="All Records"/>
+        android:title="@string/all_records"/>
     <item android:id="@+id/allinc"
-        android:title="Income Records"/>
+        android:title="@string/income_records"/>
     <item android:id="@+id/allexp"
-        android:title="Expense Records"/>
+        android:title="@string/expense_records"/>
     </group>
 </menu>

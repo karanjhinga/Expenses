@@ -54,7 +54,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Holder
             super(itemView);
             val = itemView.findViewById(R.id.value);
             cat = itemView.findViewById(R.id.category);
-            dis = itemView.findViewById(R.id.discription);
+            dis = itemView.findViewById(R.id.description);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

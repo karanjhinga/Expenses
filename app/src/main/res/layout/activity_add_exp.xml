@@ -1,69 +1,74 @@
-<RelativeLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    android:padding="16dp">
 
     <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
         android:id="@+id/til3"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <EditText
-            android:inputType="numberDecimal"
             android:id="@+id/et3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Expense"
+            android:hint="@string/expense"
+            android:importantForAutofill="no"
+            android:inputType="numberDecimal"
+            android:paddingHorizontal="10dp"
             android:textColor="@color/colorBlack"
-            android:textSize="20dp"
-            android:paddingLeft="10dp"/>
+            android:textSize="20sp" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
-        android:layout_marginTop="16dp"
         android:id="@+id/tv2"
-        android:drawablePadding="10dp"
-        android:drawableRight="@drawable/ic_spinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/til3"
+        android:layout_marginTop="16dp"
         android:background="@drawable/shape"
+        android:drawablePadding="10dp"
         android:padding="10dp"
-        android:text="Select Category..."
+        android:text="@string/select_category"
         android:textColor="@color/colorBlack"
-        android:textSize="18dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_below="@id/til3" />
-
+        android:textSize="18sp"
+        app:drawableEndCompat="@drawable/ic_spinner"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/til4"
-        android:layout_marginTop="16dp"
-        android:layout_below="@id/tv2"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv2"
+        android:layout_marginTop="16dp">
+
         <EditText
-            android:hint="Description"
+            android:id="@+id/et4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/et4"
-            android:minLines="3"
             android:gravity="top"
-            android:textSize="20dp"
+            android:hint="@string/description"
+            android:importantForAutofill="no"
+            android:inputType="text"
+            android:minLines="3"
+            android:paddingHorizontal="5dp"
             android:textColor="@color/colorBlack"
-            android:paddingLeft="5dp"/>
+            android:textSize="20sp" />
     </com.google.android.material.textfield.TextInputLayout>
+
     <Button
         android:id="@+id/save2"
-        android:layout_marginTop="16dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:text="Save"
-        android:textAllCaps="false"
-        android:textSize="20dp"
-        android:textColor="@color/colorWhite"
-        android:background="@drawable/red_button"
+        android:layout_below="@id/til4"
         android:layout_centerHorizontal="true"
-        android:layout_below="@id/til4"/>
+        android:layout_marginTop="16dp"
+        android:background="@drawable/red_button"
+        android:padding="10dp"
+        android:text="@string/save"
+        android:textAllCaps="false"
+        android:textColor="@color/colorWhite"
+        android:textSize="20sp" />
 </RelativeLayout>
