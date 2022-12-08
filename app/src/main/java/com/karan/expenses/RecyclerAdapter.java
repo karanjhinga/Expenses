@@ -11,11 +11,11 @@ import java.util.List;
 
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Holder> {
 
-    private List<SingleRecord> list;
+    private List<Record> list;
     Context context;
     myInterface myInterface;
 
-    public RecyclerAdapter(List<SingleRecord> list,myInterface myInterface) {
+    public RecyclerAdapter(List<Record> list, myInterface myInterface) {
         this.list = list;
         this.context = context;
         this.myInterface = myInterface;
@@ -29,13 +29,13 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Holder
 
     @Override
     public void onBindViewHolder(Holder holder, int position) {
-        SingleRecord singleRecord = list.get(position);
-        holder.cat.setText(singleRecord.getCategory());
-        holder.val.setText(singleRecord.getValue().toString());
-        holder.dis.setText(singleRecord.getDiscription());
-        if (singleRecord.getTYPE().equals(DatabaseHelper.TYPE_INCOME)) {
+        Record record = list.get(position);
+        holder.cat.setText(record.getCategory());
+        holder.val.setText(String.valueOf(record.getValue()));
+        holder.dis.setText(record.getDescription());
+        if (record.getType().equals(DatabaseHelper.TYPE_INCOME)) {
             holder.val.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_add, 0, 0, 0);
-        } else if (singleRecord.getTYPE().equals(DatabaseHelper.TYPE_EXPENSE)) {
+        } else if (record.getType().equals(DatabaseHelper.TYPE_EXPENSE)) {
             holder.val.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_minus, 0, 0, 0);
         }
 

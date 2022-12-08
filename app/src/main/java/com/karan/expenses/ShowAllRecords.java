@@ -19,7 +19,7 @@ import java.util.List;
 
 public class ShowAllRecords extends AppCompatActivity implements myInterface{
 
-    private List<SingleRecord> list;
+    private List<Record> list;
     private RecyclerView recyclerView;
     private RecyclerAdapter adapter;
     private DatabaseHelper databaseHelper;
@@ -51,8 +51,8 @@ public class ShowAllRecords extends AppCompatActivity implements myInterface{
     private void populatelist(Cursor cursor) {
         list.clear();
         while (cursor.moveToNext()){
-            SingleRecord singleRecord = new SingleRecord(cursor.getFloat(0),cursor.getString(2),cursor.getString(3),cursor.getString(1),cursor.getFloat(4));
-            list.add(singleRecord);
+            Record record = new Record(cursor.getFloat(0),cursor.getString(2),cursor.getString(3),cursor.getString(1),cursor.getFloat(4));
+            list.add(record);
         }
     }
 
@@ -66,7 +66,7 @@ public class ShowAllRecords extends AppCompatActivity implements myInterface{
             public boolean onMenuItemClick(MenuItem item) {
                 switch(item.getTitle().toString()){
                     case "Remove":
-                        SingleRecord record = list.get(position);
+                        Record record = list.get(position);
                         float pid = record.getPID();
                         int id = databaseHelper.deleteRecord(pid);
                         if(id > 0){
@@ -76,13 +76,13 @@ public class ShowAllRecords extends AppCompatActivity implements myInterface{
                             Toast.makeText(ShowAllRecords.this, "Not deleted !", Toast.LENGTH_SHORT).show();
                         }
                         float value = record.getValue();
-                        if (record.getTYPE().equals(DatabaseHelper.TYPE_INCOME)){
+                        if (record.getType().equals(DatabaseHelper.TYPE_INCOME)){
                             SharedPreferences sp = getSharedPreferences(PREFERENCES.SP_NAME,0);
                             SharedPreferences.Editor et= sp.edit();
                             float update = Math.abs(sp.getFloat(PREFERENCES.INCOME,00.00f) - value);
                             et.putFloat(PREFERENCES.INCOME,update);
                             et.commit();
-                        }else if (record.getTYPE().equals(DatabaseHelper.TYPE_EXPENSE)){
+                        }else if (record.getType().equals(DatabaseHelper.TYPE_EXPENSE)){
                             SharedPreferences sp = getSharedPreferences(PREFERENCES.SP_NAME,0);
                             SharedPreferences.Editor et= sp.edit();
                             float update = Math.abs(sp.getFloat(PREFERENCES.EXPENSE,00.00f) - value);
