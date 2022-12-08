@@ -15,7 +15,7 @@
         android:text="No Records Found !"
         android:textSize="30dp"
         android:textStyle="bold"/>
-    <android.support.design.widget.FloatingActionButton
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab2"
         android:src="@drawable/ic_add_white"
         android:layout_marginRight="20dp"
