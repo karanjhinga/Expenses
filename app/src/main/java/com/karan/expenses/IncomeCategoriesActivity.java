@@ -21,7 +21,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Income extends AppCompatActivity {
+public class IncomeCategoriesActivity extends AppCompatActivity {
 
     List<String> list;
     ListView listView;
@@ -32,7 +32,7 @@ public class Income extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_income);
+        setContentView(R.layout.activity_income_categories);
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         setTitle("Income Categories");
@@ -52,7 +52,7 @@ public class Income extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
-                PopupMenu popupMenu = new PopupMenu(Income.this,view);
+                PopupMenu popupMenu = new PopupMenu(IncomeCategoriesActivity.this,view);
                 popupMenu.getMenu().add("Remove");
                 popupMenu.show();
                 popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
@@ -63,9 +63,9 @@ public class Income extends AppCompatActivity {
                             if(id > 0){
                             list.remove(position);
                             adapter.notifyDataSetChanged();
-                            Toast.makeText(Income.this, "Removed !", Toast.LENGTH_SHORT).show();}
+                            Toast.makeText(IncomeCategoriesActivity.this, "Removed !", Toast.LENGTH_SHORT).show();}
                             else {
-                                Toast.makeText(Income.this, "Some error faced", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(IncomeCategoriesActivity.this, "Some error faced", Toast.LENGTH_SHORT).show();
                             }
                         }
                         return true;
@@ -96,7 +96,7 @@ public class Income extends AppCompatActivity {
     }
 
     private void showAlert() {
-        AlertDialog.Builder ab= new AlertDialog.Builder(Income.this);
+        AlertDialog.Builder ab= new AlertDialog.Builder(IncomeCategoriesActivity.this);
         View v = getLayoutInflater().inflate(R.layout.single_edittext,null);
         ab.setView(v);
         ab.setTitle("Add Income Category");
@@ -110,14 +110,14 @@ public class Income extends AppCompatActivity {
                     if(databaseHelper.insertIncomeCategory(data)){
                         list.add(data);
                         adapter.notifyDataSetChanged();
-                        Toast.makeText(Income.this, "Added Successfully", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(IncomeCategoriesActivity.this, "Added Successfully", Toast.LENGTH_SHORT).show();
                     }else {
-                        Toast.makeText(Income.this, "Oops some error occurred !", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(IncomeCategoriesActivity.this, "Oops some error occurred !", Toast.LENGTH_SHORT).show();
                     }
 
                     }
                     else {
-                    Toast.makeText(Income.this, "Field was Empty !", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(IncomeCategoriesActivity.this, "Field was Empty !", Toast.LENGTH_SHORT).show();
                 }
             }
         });

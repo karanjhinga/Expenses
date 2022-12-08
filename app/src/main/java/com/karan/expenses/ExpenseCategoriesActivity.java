@@ -21,7 +21,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Expense extends AppCompatActivity {
+public class ExpenseCategoriesActivity extends AppCompatActivity {
 
     List<String> list;
     ListView listView;
@@ -32,7 +32,7 @@ public class Expense extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_expense);
+        setContentView(R.layout.activity_expense_categories);
         ActionBar actionBar=getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         setTitle("Expense Categories");
@@ -52,7 +52,7 @@ public class Expense extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
-                PopupMenu popupMenu = new PopupMenu(Expense.this,view);
+                PopupMenu popupMenu = new PopupMenu(ExpenseCategoriesActivity.this,view);
                 popupMenu.getMenu().add("Remove");
                 popupMenu.show();
                 popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
@@ -63,9 +63,9 @@ public class Expense extends AppCompatActivity {
                             if (id>0){
                             list.remove(position);
                             adapter.notifyDataSetChanged();
-                            Toast.makeText(Expense.this, "Removed !", Toast.LENGTH_SHORT).show();}
+                            Toast.makeText(ExpenseCategoriesActivity.this, "Removed !", Toast.LENGTH_SHORT).show();}
                             else {
-                                Toast.makeText(Expense.this, "Some error occured !", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(ExpenseCategoriesActivity.this, "Some error occured !", Toast.LENGTH_SHORT).show();
                             }
                         }
                         return true;
@@ -90,7 +90,7 @@ public class Expense extends AppCompatActivity {
     }
 
     private void showAlert() {
-        AlertDialog.Builder ab= new AlertDialog.Builder(Expense.this);
+        AlertDialog.Builder ab= new AlertDialog.Builder(ExpenseCategoriesActivity.this);
         View v = getLayoutInflater().inflate(R.layout.single_edittext,null);
         ab.setView(v);
         ab.setTitle("Add Expense Category");
@@ -104,15 +104,15 @@ public class Expense extends AppCompatActivity {
                     if(databaseHelper.insertExpenseCategory(data)){
                         list.add(data);
                         adapter.notifyDataSetChanged();
-                        Toast.makeText(Expense.this, "Added Successfully", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ExpenseCategoriesActivity.this, "Added Successfully", Toast.LENGTH_SHORT).show();
                     }
                     else{
-                        Toast.makeText(Expense.this, "Oops some error occurred !", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ExpenseCategoriesActivity.this, "Oops some error occurred !", Toast.LENGTH_SHORT).show();
                     }
 
                 }
                 else {
-                    Toast.makeText(Expense.this, "Field was Empty !", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ExpenseCategoriesActivity.this, "Field was Empty !", Toast.LENGTH_SHORT).show();
                 }
             }
         });

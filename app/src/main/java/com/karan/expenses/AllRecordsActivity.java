@@ -17,7 +17,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ShowAllRecords extends AppCompatActivity implements myInterface{
+public class AllRecordsActivity extends AppCompatActivity implements myInterface{
 
     private List<Record> list;
     private RecyclerView recyclerView;
@@ -27,7 +27,7 @@ public class ShowAllRecords extends AppCompatActivity implements myInterface{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_show_all_records);
+        setContentView(R.layout.activity_all_records);
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         databaseHelper = new DatabaseHelper(this);
@@ -70,10 +70,10 @@ public class ShowAllRecords extends AppCompatActivity implements myInterface{
                         float pid = record.getPID();
                         int id = databaseHelper.deleteRecord(pid);
                         if(id > 0){
-                            Toast.makeText(ShowAllRecords.this, "Record Deleted !", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(AllRecordsActivity.this, "Record Deleted !", Toast.LENGTH_SHORT).show();
                         }
                         else {
-                            Toast.makeText(ShowAllRecords.this, "Not deleted !", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(AllRecordsActivity.this, "Not deleted !", Toast.LENGTH_SHORT).show();
                         }
                         float value = record.getValue();
                         if (record.getType().equals(DatabaseHelper.TYPE_INCOME)){

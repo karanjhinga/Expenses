@@ -14,14 +14,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-public class ScrollingActivity extends AppCompatActivity{
+public class HomeActivity extends AppCompatActivity{
 
     TextView t1,t2,t3;
     SharedPreferences sp;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_scrolling);
+        setContentView(R.layout.activity_home);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         t1 = findViewById(R.id.Income);
@@ -58,10 +58,10 @@ public class ScrollingActivity extends AppCompatActivity{
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.action_income:
-                startActivity(new Intent(ScrollingActivity.this,Income.class));
+                startActivity(new Intent(HomeActivity.this, IncomeCategoriesActivity.class));
                 break;
             case R.id.action_expense:
-                startActivity(new Intent(ScrollingActivity.this,Expense.class));
+                startActivity(new Intent(HomeActivity.this, ExpenseCategoriesActivity.class));
                 break;
             case R.id.action_about:
                 showAbout();
@@ -71,7 +71,7 @@ public class ScrollingActivity extends AppCompatActivity{
     }
 
     private void showAbout() {
-        AlertDialog.Builder ab = new AlertDialog.Builder(ScrollingActivity.this);
+        AlertDialog.Builder ab = new AlertDialog.Builder(HomeActivity.this);
         ab.setTitle("About the application");
         ab.setMessage("Expenses is a simple app through which we can keep track on our day to day expenses. This app stores data locally and does'nt need any connectivity. This application is developed by \"Karan Jhinga\"");
         ab.setPositiveButton("OK",null);
@@ -85,7 +85,7 @@ public class ScrollingActivity extends AppCompatActivity{
     }
 
     private void showExitDailog(){
-        AlertDialog.Builder ab = new AlertDialog.Builder(ScrollingActivity.this);
+        AlertDialog.Builder ab = new AlertDialog.Builder(HomeActivity.this);
         ab.setTitle("Exit Application");
         ab.setMessage("Are you sure you want to exit the application ?");
         ab.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
@@ -100,15 +100,15 @@ public class ScrollingActivity extends AppCompatActivity{
     }
 
     public void addExpense(View view) {
-        startActivity(new Intent(ScrollingActivity.this,AddExp.class));
+        startActivity(new Intent(HomeActivity.this, AddExpenseActivity.class));
     }
 
     public void addIncome(View view) {
-        startActivity(new Intent(ScrollingActivity.this,AddInc.class));
+        startActivity(new Intent(HomeActivity.this, AddIncomeActivity.class));
     }
 
     public void showRecords(View view) {
-        startActivity(new Intent(ScrollingActivity.this,ShowAllRecords.class));
+        startActivity(new Intent(HomeActivity.this, AllRecordsActivity.class));
     }
 
 }

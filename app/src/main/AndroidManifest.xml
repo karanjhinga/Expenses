@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".ScrollingActivity"
+            android:name=".HomeActivity"
             android:exported="true"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -19,11 +19,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Income" />
-        <activity android:name=".Expense" />
-        <activity android:name=".AddInc" />
-        <activity android:name=".AddExp" />
-        <activity android:name=".ShowAllRecords" />
+        <activity android:name=".IncomeCategoriesActivity" />
+        <activity android:name=".ExpenseCategoriesActivity" />
+        <activity android:name=".AddIncomeActivity" />
+        <activity android:name=".AddExpenseActivity" />
+        <activity android:name=".AllRecordsActivity" />
     </application>
 
 </manifest>
