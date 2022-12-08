@@ -1,4 +1,4 @@
-package com.example.karan.expenses;
+package com.karan.expenses;
 
 import android.content.Context;
 import androidx.test.platform.app.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.example.karan.expenses", appContext.getPackageName());
+        assertEquals("com.karan.expenses", appContext.getPackageName());
     }
 }

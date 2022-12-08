@@ -1,4 +1,4 @@
-package com.example.karan.expenses;
+package com.karan.expenses;
 
 import org.junit.Test;
 

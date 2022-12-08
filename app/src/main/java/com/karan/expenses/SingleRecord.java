@@ -1,4 +1,4 @@
-package com.example.karan.expenses;
+package com.karan.expenses;
 
 public class SingleRecord {
     private Float value;

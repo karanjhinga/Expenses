@@ -1,4 +1,4 @@
-package com.example.karan.expenses;
+package com.karan.expenses;
 
 
 import android.content.DialogInterface;
@@ -20,25 +20,25 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AddInc extends AppCompatActivity {
+public class AddExp extends AppCompatActivity {
 
     EditText value,description;
     TextView category;
     Button save;
     List<String> list;
     DatabaseHelper databaseHelper;
-   @Override
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_inc);
-       ActionBar actionBar =getSupportActionBar();
-       actionBar.setDisplayHomeAsUpEnabled(true);
-        setTitle("Add Income");
+        setContentView(R.layout.activity_add_exp);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        setTitle("Add Expense");
         databaseHelper = new DatabaseHelper(this);
-        value = findViewById(R.id.et);
-        description = findViewById(R.id.et2);
-        category =findViewById(R.id.tv1);
-        save = findViewById(R.id.save);
+        value = findViewById(R.id.et3);
+        description = findViewById(R.id.et4);
+        category =findViewById(R.id.tv2);
+        save = findViewById(R.id.save2);
         list = new ArrayList<>();
         populatelist();
         save.setOnClickListener(new View.OnClickListener() {
@@ -46,24 +46,24 @@ public class AddInc extends AppCompatActivity {
             public void onClick(View v) {
                 String val = value.getText().toString();
                 if(TextUtils.isEmpty(val)){
-                    Toast.makeText(AddInc.this, "Income can't be left empty !", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AddExp.this, "Expense can't be left empty !", Toast.LENGTH_SHORT).show();
                 }
                 else if(category.getText().toString().equals(DatabaseHelper.Default)){
-                    Toast.makeText(AddInc.this, "Category must be selected", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AddExp.this, "Category must be selected", Toast.LENGTH_SHORT).show();
                 }
                 else {
                     float value = Float.parseFloat(val);
-                    if(databaseHelper.insertRecord(value,DatabaseHelper.TYPE_INCOME,category.getText().toString(),description.getText().toString())){
+                    if(databaseHelper.insertRecord(value,DatabaseHelper.TYPE_EXPENSE,category.getText().toString(),description.getText().toString())){
                         SharedPreferences sp = getSharedPreferences(PREFERENCES.SP_NAME,0);
                         SharedPreferences.Editor et= sp.edit();
-                        float update = sp.getFloat(PREFERENCES.INCOME,00.00f) + value;
-                        et.putFloat(PREFERENCES.INCOME,update);
+                        float update = Math.abs(sp.getFloat(PREFERENCES.EXPENSE,00.00f)) + Math.abs(value);
+                        et.putFloat(PREFERENCES.EXPENSE,update);
                         et.commit();
-                        Toast.makeText(AddInc.this, "Added "+ value, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(AddExp.this, "Spent "+value, Toast.LENGTH_SHORT).show();
                         clear();
                     }
                     else {
-                        Toast.makeText(AddInc.this, "Oops some error occurred !", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(AddExp.this, "Oops some error occurred !", Toast.LENGTH_SHORT).show();
                     }
                 }
             }
@@ -97,27 +97,27 @@ public class AddInc extends AppCompatActivity {
         });
     }
 
-
-
     private void clear() {
-       value.setText("");
-       category.setText(DatabaseHelper.Default);
-       description.setText("");
+        value.setText("");
+        category.setText(DatabaseHelper.Default);
+        description.setText("");
     }
 
     private void showDailogtoAddDefaults() {
-        AlertDialog.Builder ab = new AlertDialog.Builder(AddInc.this);
+        AlertDialog.Builder ab = new AlertDialog.Builder(AddExp.this);
         ab.setTitle("Add Default Categories ?");
-        ab.setMessage("No Income categories are defined. Do you want to add system default categories ?");
+        ab.setMessage("No Expense categories are defined. Do you want to add system default categories ?");
         ab.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                list.add("Cash");
-                list.add("Card 1");
-                list.add("Savings");
-                list.add("Loan");
+                list.add("Food");
+                list.add("Fuel");
+                list.add("Personal");
+                list.add("Pets");
+                list.add("Merchandise");
+                list.add("Others");
                 for(String i:list){
-                    databaseHelper.insertIncomeCategory(i);
+                    databaseHelper.insertExpenseCategory(i);
                 }
             }
         });
@@ -127,7 +127,7 @@ public class AddInc extends AppCompatActivity {
     }
 
     private void populatelist() {
-        Cursor cursor = databaseHelper.getIncomeColumns();
+        Cursor cursor = databaseHelper.getExpenseColumns();
         while (cursor.moveToNext()){
             list.add(cursor.getString(0));
         }

@@ -1,4 +1,4 @@
-package com.example.karan.expenses;
+package com.karan.expenses;
 
 import android.content.DialogInterface;
 import android.database.Cursor;
@@ -21,29 +21,29 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Income extends AppCompatActivity {
+public class Expense extends AppCompatActivity {
 
     List<String> list;
     ListView listView;
+    DatabaseHelper databaseHelper;
     FloatingActionButton button;
     ArrayAdapter<String> adapter;
-    DatabaseHelper databaseHelper;
     TextView t;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_income);
-        ActionBar actionBar = getSupportActionBar();
+        setContentView(R.layout.activity_expense);
+        ActionBar actionBar=getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
-        setTitle("Income Categories");
+        setTitle("Expense Categories");
         databaseHelper = new DatabaseHelper(this);
-        button = findViewById(R.id.fab1);
-        t= findViewById(R.id.n2);
+        button = findViewById(R.id.fab2);
+        t = findViewById(R.id.n3);
         t.setVisibility(View.GONE);
-        listView = findViewById(R.id.income_list);
+        listView = findViewById(R.id.expense_list);
         list = new ArrayList<>();
         populatelist();
-        if(list.size()<1){
+        if (list.size()<1){
             listView.setVisibility(View.GONE);
             t.setVisibility(View.VISIBLE);
         }
@@ -52,20 +52,20 @@ public class Income extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
-                PopupMenu popupMenu = new PopupMenu(Income.this,view);
+                PopupMenu popupMenu = new PopupMenu(Expense.this,view);
                 popupMenu.getMenu().add("Remove");
                 popupMenu.show();
                 popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
                         if(item.getTitle().toString().equals("Remove")){
-                            int id = databaseHelper.deleteIncomeCategory(list.get(position));
-                            if(id > 0){
+                            int id = databaseHelper.deleteExpenseCategory(list.get(position));
+                            if (id>0){
                             list.remove(position);
                             adapter.notifyDataSetChanged();
-                            Toast.makeText(Income.this, "Removed !", Toast.LENGTH_SHORT).show();}
+                            Toast.makeText(Expense.this, "Removed !", Toast.LENGTH_SHORT).show();}
                             else {
-                                Toast.makeText(Income.this, "Some error faced", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(Expense.this, "Some error occured !", Toast.LENGTH_SHORT).show();
                             }
                         }
                         return true;
@@ -82,42 +82,37 @@ public class Income extends AppCompatActivity {
     }
 
     private void populatelist() {
-        Cursor cursor = databaseHelper.getIncomeColumns();
+        Cursor cursor = databaseHelper.getExpenseColumns();
         while (cursor.moveToNext()){
             String data = cursor.getString(0);
             list.add(data);
         }
     }
 
-    @Override
-    public boolean onSupportNavigateUp() {
-        finish();
-        return true;
-    }
-
     private void showAlert() {
-        AlertDialog.Builder ab= new AlertDialog.Builder(Income.this);
+        AlertDialog.Builder ab= new AlertDialog.Builder(Expense.this);
         View v = getLayoutInflater().inflate(R.layout.single_edittext,null);
         ab.setView(v);
-        ab.setTitle("Add Income Category");
+        ab.setTitle("Add Expense Category");
         ab.setCancelable(true);
         final EditText et = v.findViewById(R.id.single_edit);
-        ab.setPositiveButton("Add", new DialogInterface.OnClickListener() {
+        ab.setPositiveButton( "Add", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 String data = et.getText().toString();
                 if (!TextUtils.isEmpty(data)){
-                    if(databaseHelper.insertIncomeCategory(data)){
+                    if(databaseHelper.insertExpenseCategory(data)){
                         list.add(data);
                         adapter.notifyDataSetChanged();
-                        Toast.makeText(Income.this, "Added Successfully", Toast.LENGTH_SHORT).show();
-                    }else {
-                        Toast.makeText(Income.this, "Oops some error occurred !", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Expense.this, "Added Successfully", Toast.LENGTH_SHORT).show();
+                    }
+                    else{
+                        Toast.makeText(Expense.this, "Oops some error occurred !", Toast.LENGTH_SHORT).show();
                     }
 
-                    }
-                    else {
-                    Toast.makeText(Income.this, "Field was Empty !", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    Toast.makeText(Expense.this, "Field was Empty !", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -125,4 +120,9 @@ public class Income extends AppCompatActivity {
         ab.show();
     }
 
+    @Override
+    public boolean onSupportNavigateUp() {
+        finish();
+        return true;
+    }
 }

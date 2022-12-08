@@ -1,4 +1,4 @@
-package com.example.karan.expenses;
+package com.karan.expenses;
 
 public class PREFERENCES {
     public static final String SP_NAME="mysp";

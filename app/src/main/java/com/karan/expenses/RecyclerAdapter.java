@@ -1,4 +1,4 @@
-package com.example.karan.expenses;
+package com.karan.expenses;
 
 import android.content.Context;
 import androidx.recyclerview.widget.RecyclerView;
